@@ -112,3 +112,53 @@ ggplot(data) + geom_line(aes(color="red", x=var1, y=var2))+ geom_line(aes(color=
 ggplot(data, aes(y=var2)) + geom_boxplot(fill="grey") +  labs(title="boxplot")
 ggplot(data, aes(x=var1)) + geom_density(fill="grey") +  labs(title="density") + theme(panel.background=element_  rect(fill="yellow"), panel.grid.major=element_line(color="blue", size=2))
 ggsave("D:/density.png")
+install.packages("plotly")
+require(plotly)
+install.packages("ggplotly")
+set.seed(12)
+var1 <- rnorm(100, mean=1, sd=1)
+var2 <- rnorm(100, mean=2, sd=1)
+var3 <- rnorm(100, mean=1, sd=2)
+data <- data.frame(var1, var2, var3)
+gg <- ggplot(data) + geom_line(aes(x=var1, y=var2))
+g <- ggplotly(gg)
+g
+Sys.setenv("plotly_username"="your plotly username")
+Sys.setenv("plotly_api_key"="your api key")
+api_create(g, filename="")
+set.seed(123)
+var1 <- rnorm(100, mean=2, sd=1)
+var2 <- rnorm(100, mean=3, sd=1)
+var3 <- rnorm(100, mean=3, sd=2)
+data <- data.frame(var1, var2, var3)
+data
+apply(data, 1, mean)
+apply(data,2,mean)
+lapply(data$var1, mean)
+sapply(data$var1, mean)
+set.seed(123);
+var1 <- rnorm(100, mean=2, sd=1);
+var2 <- rnorm(100, mean=3, sd=1);
+var3 <- rnorm(100, mean=3, sd=2);
+data <- data.frame(var1, var2, var3);
+sample(data$var1, 5, replace=TRUE)
+data(iris)
+summary(iris) 
+iris_sample <- iris %>%  + group_by(Species) %>%  + sample_n(13)
+iris_sample
+# A tibble: 39 x 5
+# Groups: Species
+View(iris_sample)
+
+View(iris_sample)
+set.seed(123)
+var1 <- rnorm(100, mean=2, sd=1)
+var2 <- rnorm(100, mean=3, sd=1);
+var3 <- rnorm(100, mean=3, sd=2);
+data <- data.frame(var1, var2, var3)
+cor(data$var1,  data$var2)
+cov(data$var1,data$var2)
+t.test(data$var1, mu=0.6)
+t.test(data$var1, data$var2, var.equal=TRUE, paired=FALSE)
+t.test(data$var1, data$var2, var.equal=FALSE, paired=FALSE)
+t.test(data$var1, data$var2, paired=TRUE)
