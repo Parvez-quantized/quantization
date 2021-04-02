@@ -162,3 +162,33 @@ t.test(data$var1, mu=0.6)
 t.test(data$var1, data$var2, var.equal=TRUE, paired=FALSE)
 t.test(data$var1, data$var2, var.equal=FALSE, paired=FALSE)
 t.test(data$var1, data$var2, paired=TRUE)
+data <- c(B=200, c=300, D=400);
+chisq.test(data)
+var1 <- c("Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female")
+var2 <- c("chocolate", "strawberry", "strawberry","strawberry", "chocolate", "chocolate", "chocolate","strawberry", "strawberry", "strawberry")
+data <- data.frame(var1, var2)
+data
+data.table <- table(data$var1, data$var2)
+data.table
+chisq.test(data.table)
+set.seed(123)
+var1 <- rnorm(12, mean=2, sd=1)
+var2 <- c("B", "B", "B", "B", "C", "C", "C", "C", "C", "D","D", "B")
+data <- data.frame(var1, var2)
+fit <- aov(data$var1 ~ data$var2, data=data)
+fit
+summary(fit)
+set.seed(123)
+var1 <- rnorm(12, mean=2, sd=1);
+var2 <- c("B", "B", "B", "B", "C", "C", "C", "C", "C", "D",  "D", "B")
+var3 <- c("D", "D", "D", "D", "E", "E", "E", "E", "E", "F", "F", "F")
+data <- data.frame(var1, var2, var3)
+fit <- aov(data$var1 ~ data$var2 + data$var3, data=data);
+fit
+summary(fit)
+data(iris)
+str(iris)
+summary(iris)
+res <- manova(cbind(iris$Sepal.Length, iris$Petal.Length) ~iris$Species, data=iris)
+summary(res)
+summary.aov(res)
